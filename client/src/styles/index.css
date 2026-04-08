@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  body {
+    background-color: #131313;
+    color: #e5e2e1;
+    @apply font-body antialiased;
+  }
+
+  ::selection {
+    background-color: #c9a84c;
+    color: #503d00;
+  }
+}
+
+/* ── Material Symbols (ultra-thin weight 100) ─────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 24;
+  color: #e6c364;
+}
+
+/* ── Vignette overlay (radial gradient blending photos into surface) ───────── */
+.vignette-overlay {
+  background: radial-gradient(circle, transparent 20%, #131313 100%);
+}
+
+/* ── Sidebar slide transition (luxury cubic-bezier) ──────────────────────── */
+.sidebar-transition {
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Ambient card shadow (surface-container-highest at 8% opacity) ────────── */
+@layer utilities {
+  .shadow-ambient {
+    box-shadow: 0 0 40px 4px rgba(53, 53, 52, 0.08);
+  }
+
+  /* Gradient CTA — 45° from primary to primary-container */
+  .bg-gradient-cta {
+    background: linear-gradient(45deg, #e6c364, #c9a84c);
+  }
+
+  /* Ghost border fallback — outline-variant at 20% opacity */
+  .border-ghost {
+    border: 1px solid rgba(77, 70, 55, 0.2);
+  }
+}

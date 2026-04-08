@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Cinematic Archive | Exhibition</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#dde1ff",
+                        "tertiary-container": "#9ba8eb",
+                        "inverse-primary": "#755b00",
+                        "on-tertiary": "#1e2b66",
+                        "on-secondary": "#3b2f0e",
+                        "outline": "#99907e",
+                        "on-tertiary-container": "#2e3b77",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#c9a84c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#35437e",
+                        "background": "#131313",
+                        "surface-container-highest": "#353534",
+                        "secondary": "#d8c598",
+                        "on-secondary-container": "#c9b78b",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#503d00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#f5e1b2",
+                        "primary-fixed-dim": "#e6c364",
+                        "surface-tint": "#e6c364",
+                        "error-container": "#93000a",
+                        "on-primary": "#3d2e00",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#b9c3ff",
+                        "on-primary-fixed-variant": "#584400",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "tertiary": "#b9c4ff",
+                        "primary-fixed": "#ffe08f",
+                        "on-tertiary-fixed": "#041451",
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#524523",
+                        "primary": "#e6c364",
+                        "secondary-fixed-dim": "#d8c598",
+                        "outline-variant": "#4d4637",
+                        "on-surface-variant": "#d0c5b2",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-container": "#554825",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#241a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #131313; color: #e5e2e1; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .vignette-overlay { background: radial-gradient(circle, transparent 20%, #131313 100%); }
+        .sidebar-transition { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl">
+<nav class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif italic text-[#c9a84c]">The Cinematic Archive</div>
+<div class="hidden md:flex gap-12">
+<a class="text-[#c9a84c] border-b border-[#c9a84c] pb-1 uppercase tracking-[0.1rem] text-xs font-label" href="#">Exhibition</a>
+<a class="text-neutral-400 font-medium uppercase tracking-[0.1rem] text-xs font-label hover:text-[#e6c364] transition-colors duration-500" href="#">Archive</a>
+<a class="text-neutral-400 font-medium uppercase tracking-[0.1rem] text-xs font-label hover:text-[#e6c364] transition-colors duration-500" href="#">Timeline</a>
+<a class="text-neutral-400 font-medium uppercase tracking-[0.1rem] text-xs font-label hover:text-[#e6c364] transition-colors duration-500" href="#">Provenance</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-neutral-400">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-50 grayscale" data-alt="dramatic low-angle studio silhouette of a classic Porsche 911 in deep shadow with minimal champagne gold rim lighting against black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg1rsR7JLw7Qw8oFatpBU4i48VBQc-pW_hsSzUpRDdofr_jz_UJvgO0kIKw-xvbqPguubVMDpEzj1Nr43RuWvYN_N4leHUtCVtYPGEkmk3L6S0R9M_i_PMTw2nIHXl9f_w6c01WA5JVoCefM98BPoIDiccyKYbkbNVdy0Or9BY9oco8_2b63t0jWGX-yI0jrsLDS1BwB9CQYEbRiqxUgnIGfqKw0l_SvnOiiPcUaj5HwpOTaETAp8SMsy3CRPg2xEARiIYVOIMqUw"/>
+<div class="absolute inset-0 vignette-overlay"></div>
+</div>
+<div class="relative z-10 text-center px-4">
+<h1 class="text-6xl md:text-8xl font-headline italic text-primary-container mb-6 tracking-tight">The Legacy of Machines</h1>
+<div class="w-32 h-[1px] bg-primary-container mx-auto mb-8"></div>
+<p class="max-w-xl mx-auto text-on-surface-variant font-headline italic text-lg leading-relaxed">
+                    A curated technical narrative exploring the intersection of industrial precision and emotional heritage.
+                </p>
+</div>
+</section>
+<!-- Sticky Filter Bar -->
+<section class="sticky top-[80px] z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+<div class="max-w-screen-2xl mx-auto px-8 py-4 flex flex-wrap items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="text-[10px] uppercase tracking-widest text-outline">Marque</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-primary text-on-primary">Porsche</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors">Ferrari</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors">Jaguar</button>
+</div>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] uppercase tracking-widest text-outline">Era</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors">Golden Age</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-[10px] uppercase tracking-widest text-primary-container font-semibold">Results Count: 42</div>
+<div class="flex items-center gap-2 group cursor-pointer">
+<span class="text-[10px] uppercase tracking-widest text-on-surface">Sort: Year</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Porsche Brand Biography (Area 2) -->
+<section class="bg-surface-container-low border-b border-outline-variant/5">
+<div class="max-w-4xl mx-auto py-16 px-8 text-center">
+<span class="text-[10px] uppercase tracking-[0.3rem] text-outline mb-4 block">Marque Profile</span>
+<h2 class="text-4xl font-headline italic text-on-surface mb-6">Porsche Heritage</h2>
+<p class="text-on-surface-variant font-headline italic leading-loose text-lg">
+                    Born from the pursuit of pure functionalism, the Porsche narrative is one of evolutionary perfection. From the workshops of Gmünd to the Mulsanne Straight, each machine represents a relentless refinement of the rear-engine archetype.
+                </p>
+</div>
+</section>
+<!-- Container for Sidebar Alignment (Area 3 Wrapper) -->
+<div class="flex flex-row overflow-hidden relative">
+<!-- Vertical Timeline Section (Area 3 Content) -->
+<section class="flex-1 sidebar-transition relative py-24 bg-surface overflow-hidden">
+<div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-primary-container/30 transform -translate-x-1/2"></div>
+<div class="max-w-6xl mx-auto px-4 space-y-32">
+<!-- Timeline Node 1 (Left) -->
+<div class="relative flex flex-col md:flex-row items-center md:items-start group cursor-pointer">
+<div class="w-full md:w-1/2 md:pr-20 md:text-right">
+<div class="space-y-4">
+<span class="text-[10px] uppercase tracking-[0.2rem] text-primary-container font-bold">Porsche</span>
+<h3 class="text-5xl font-headline text-on-surface">911 Carrera RS 2.7</h3>
+<div class="text-2xl font-light text-outline font-headline italic">1973</div>
+<p class="text-on-surface-variant max-w-sm ml-auto font-body font-light leading-relaxed">
+                                    The definitive performance icon. Developed for homologation, it remains the purest expression of the air-cooled era.
+                                </p>
+<div class="inline-block px-3 py-1 border border-primary-container/20 rounded-sm text-[10px] uppercase tracking-widest text-primary-container">
+                                    Sports
+                                </div>
+</div>
+</div>
+<div class="absolute left-1/2 top-0 w-4 h-4 bg-primary-container rounded-full transform -translate-x-1/2 border-4 border-surface z-10"></div>
+<div class="w-full md:w-1/2 md:pl-20 mt-8 md:mt-0">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="vintage white Porsche 911 Carrera RS 2.7 with iconic blue lettering parked in a minimalist concrete architectural space with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD36lfqvlfn2P8iJhXm7Y0wtnAdD3_KqMzPW74-LAuEJXE3YFPRpq0nZBB6VIYXxQtgHES7-kNXRWR8LfhCW0t6DonjSU72r8b5FwhQtaj9O-t2P0tXul2nzr2_BZu6yc5epq10LzdK15cO4DdINdOs56LjNq4Ags2gYWhUoIlI4qlo6a0Oy_QLjObCUqRWCdak0A5XncS1W-Ise17689waizJ21bhim_Xo4v5pl42TLuyj3xgYBeOSlHMYi9ugJ_E0GapSo-Glu4"/>
+</div>
+</div>
+</div>
+<!-- Timeline Node 2 (Right) -->
+<div class="relative flex flex-col md:flex-row-reverse items-center md:items-start">
+<div class="w-full md:w-1/2 md:pl-20">
+<div class="space-y-4">
+<span class="text-[10px] uppercase tracking-[0.2rem] text-primary-container font-bold">Porsche</span>
+<h3 class="text-5xl font-headline text-on-surface">550 Spyder</h3>
+<div class="text-2xl font-light text-outline font-headline italic">1954</div>
+<p class="text-on-surface-variant max-w-sm font-body font-light leading-relaxed">
+                                    The giant killer. A lightweight masterpiece that redefined competition efficiency through aerospace-inspired engineering.
+                                </p>
+<div class="inline-block px-3 py-1 border border-primary-container/20 rounded-sm text-[10px] uppercase tracking-widest text-primary-container">
+                                    Racing
+                                </div>
+</div>
+</div>
+<div class="absolute left-1/2 top-0 w-4 h-4 bg-primary-container rounded-full transform -translate-x-1/2 border-4 border-surface z-10"></div>
+<div class="w-full md:w-1/2 md:pr-20 mt-8 md:mt-0">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Silver classic Porsche 550 Spyder highlighting its curves and open cockpit, soft museum lighting with long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Xbc0jm_XugRLYrl1jwyXuUfu1ZJkaPDSY7BykDJ9FuMHxyIrJCch3s0TCU3ipQcOIpk7gp99qykfvvrGg0cU6zaCG02TKwkeRtE_EMUdqGerdKUwcEZ_onXYQb_lnvHDEXcnIo66uw93a4-ZnKQ9Ks1JmeO91QezZfqTJJ10-CZvebPw-gfbGEB98o8ikd4fY_SvkgRYlllwPaQbYi7uS7MmXEJFURIwTEtTytdYvMY1VhJogd-tRs9WUkH_fBekT3GZglhntg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Narrative Sidebar -->
+<!-- Adjusted to start exactly with the timeline section and span its height -->
+<aside class="w-0 lg:w-[450px] bg-surface-container-lowest border-l border-outline-variant/10 sidebar-transition translate-x-full lg:translate-x-0 relative overflow-y-auto" id="tech-sidebar">
+<div class="sticky top-0 p-8 lg:p-12 space-y-16">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-3xl font-serif text-[#c9a84c] mb-1">Technical Narrative</h2>
+<p class="text-neutral-500 font-sans text-xs uppercase tracking-[0.2em]">911 Carrera RS 2.7</p>
+</div>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="text-[#c9a84c] border-l-2 border-[#c9a84c] pl-4 font-label text-[10px] uppercase tracking-widest" href="#">Overview</a>
+<a class="text-neutral-500 pl-4 font-label text-[10px] uppercase tracking-widest hover:text-[#e6c364] transition-all" href="#">Specifications</a>
+<a class="text-neutral-500 pl-4 font-label text-[10px] uppercase tracking-widest hover:text-[#e6c364] transition-all" href="#">History</a>
+<a class="text-neutral-500 pl-4 font-label text-[10px] uppercase tracking-widest hover:text-[#e6c364] transition-all" href="#">Media</a>
+</nav>
+<div class="space-y-12">
+<div>
+<h3 class="text-[10px] uppercase tracking-widest text-outline mb-8 pb-2 border-b border-outline-variant/20">Core Specifications</h3>
+<div class="grid grid-cols-2 gap-x-8 gap-y-10">
+<div>
+<span class="block text-[10px] text-neutral-500 uppercase tracking-wider mb-2">Engine</span>
+<span class="text-on-surface text-xl font-headline italic">2.7L Flat-6</span>
+</div>
+<div>
+<span class="block text-[10px] text-neutral-500 uppercase tracking-wider mb-2">Power</span>
+<span class="text-on-surface text-xl font-headline italic">210 hp</span>
+</div>
+<div>
+<span class="block text-[10px] text-neutral-500 uppercase tracking-wider mb-2">Top Speed</span>
+<span class="text-on-surface text-xl font-headline italic">152 mph</span>
+</div>
+<div>
+<span class="block text-[10px] text-neutral-500 uppercase tracking-wider mb-2">Weight</span>
+<span class="text-on-surface text-xl font-headline italic">960 kg</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-[10px] uppercase tracking-widest text-outline mb-8 pb-2 border-b border-outline-variant/20">Provenance Note</h3>
+<p class="text-lg text-on-surface-variant leading-relaxed font-headline italic">
+                                This specific chassis represents the pinnacle of the 1973 production run. Featuring the lightweight body panels and the iconic 'Ducktail' spoiler, it remains an unmolested example of Rennsport history.
+                            </p>
+</div>
+</div>
+<button class="w-full py-4 rounded-full border border-outline-variant/40 text-[#c9a84c] uppercase tracking-widest text-[10px] font-bold hover:bg-primary/10 transition-all duration-400">
+                        Request Provenance
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4d4637]/20 bg-[#131313] z-50 relative">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-screen-2xl mx-auto gap-8">
+<div class="text-[10px] uppercase tracking-widest text-neutral-600 font-label">
+                © 2024 The Cinematic Archive. Heritage of Automotive Engineering.
+            </div>
+<div class="flex gap-12">
+<a class="text-[10px] uppercase tracking-widest text-neutral-600 font-label hover:text-[#c9a84c] transition-colors" href="#">Terms of Archive</a>
+<a class="text-[10px] uppercase tracking-widest text-neutral-600 font-label hover:text-[#c9a84c] transition-colors" href="#">Provenance Policy</a>
+<a class="text-[10px] uppercase tracking-widest text-neutral-600 font-label hover:text-[#c9a84c] transition-colors" href="#">Contact Curator</a>
+</div>
+</div>
+</footer>
+</body></html>
