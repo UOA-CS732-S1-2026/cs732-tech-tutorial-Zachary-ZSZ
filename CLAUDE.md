@@ -10,6 +10,17 @@ ClassicRide ("The Cinematic Archive") is a luxury automotive exhibition web app 
 - **Design spec**: `design/stitch_classic_car_legacy/DESIGN.md` — authoritative design system rules
 - **Visual mockup**: `design/stitch_classic_car_legacy/screen.png`
 
+## Development Status
+
+| Phase | Content | Status |
+|-------|---------|--------|
+| Phase 1 | Design system migration & React scaffold | ✅ Complete |
+| Phase 2 | MongoDB schemas & Express API | ✅ Complete |
+| Phase 3 | React frontend implementation | ✅ Complete |
+| Phase 4 | Code quality & git hygiene | 🔄 In scope (no production deployment required) |
+
+**Production deployment is out of scope.** The project runs locally only (`npm run dev`). Do not add deployment configs, CI/CD pipelines, or hosting setup unless explicitly requested.
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -39,7 +50,7 @@ ClassicRide/
 │   │   │   ├── sidebar/       # TechnicalSidebar
 │   │   │   └── filter/        # FilterBar
 │   │   ├── pages/             # Home, MarquePage, CarDetail, Archive, admin/
-│   │   ├── hooks/             # useCars, useMarques, useSidebar
+│   │   ├── hooks/             # useCars, useMarques
 │   │   ├── services/api.js    # Axios instance + all API calls
 │   │   └── store/filterStore.js
 │   └── tailwind.config.js     # All design tokens (migrated from prototype)
@@ -47,7 +58,7 @@ ClassicRide/
 │   ├── models/                # Car, Marque, Inquiry, User
 │   ├── routes/                # cars, marques, inquiries, auth
 │   ├── controllers/
-│   ├── middleware/            # auth.js (JWT), upload.js, errorHandler.js
+│   ├── middleware/            # auth.js (JWT), errorHandler.js
 │   └── seed/seed.js           # Seed DB with initial cars/marques
 ├── design/stitch_classic_car_legacy/   # Prototype (read-only reference)
 └── .env                       # MONGO_URI, JWT_SECRET, CLOUDINARY_*
@@ -64,15 +75,9 @@ npm run dev
 
 # Seed the database (run once after first setup)
 node server/seed/seed.js
-
-# Build frontend for production
-npm run build
-
-# Start production server (serves client/dist + /api)
-npm start
 ```
 
-Vite proxies `/api` → `http://localhost:5000` in dev. In production, Express serves `client/dist/` as static files.
+Vite proxies `/api` → `http://localhost:5000` in dev.
 
 ## API Endpoints
 
@@ -146,5 +151,7 @@ All rules are authoritative from `DESIGN.md`. The most important:
 **Timeline**: Single `w-px bg-primary-container/30` vertical line connecting nodes. No horizontal dividers. Nodes alternate `flex-row` / `flex-row-reverse` by index.
 
 **Glassmorphism** (header/overlays): `bg-surface-bright/60 backdrop-blur-xl`
+
+**Header**: Desktop-only navigation. No mobile hamburger menu — this is intentional by design.
 
 **TechnicalSidebar**: `w-[450px] bg-surface-container-lowest border-l border-outline-variant/10`. Slides in via Framer Motion on mobile. Syncs to the clicked timeline node — reads `useCar(selectedSlug)` internally.

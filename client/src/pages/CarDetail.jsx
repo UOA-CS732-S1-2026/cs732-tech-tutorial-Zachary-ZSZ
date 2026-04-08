@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Header from '../components/layout/Header.jsx'
 import Footer from '../components/layout/Footer.jsx'
 import { useCar } from '../hooks/useCars.js'
-import { postInquiry } from '../services/api.js'
 
 function SpecGrid({ specs }) {
   if (!specs) return null
@@ -27,101 +25,6 @@ function SpecGrid({ specs }) {
   )
 }
 
-function InquiryForm({ carId }) {
-  const [form, setForm] = useState({ visitorName: '', email: '', message: '' })
-  const [status, setStatus] = useState(null) // null | 'sending' | 'sent' | 'error'
-
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('sending')
-    try {
-      await postInquiry({ car: carId, ...form })
-      setStatus('sent')
-      setForm({ visitorName: '', email: '', message: '' })
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  if (status === 'sent') {
-    return (
-      <div className="py-12 text-center">
-        <p className="text-primary font-headline italic text-lg">
-          Your inquiry has been received. The curator will be in touch.
-        </p>
-      </div>
-    )
-  }
-
-  const inputClass = [
-    'w-full bg-transparent border-b border-outline-variant text-on-surface',
-    'py-3 text-sm font-body placeholder-on-surface-variant/50',
-    'focus:outline-none focus:border-primary transition-colors duration-500',
-  ].join(' ')
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <label className="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">
-            Name
-          </label>
-          <input
-            name="visitorName"
-            value={form.visitorName}
-            onChange={handleChange}
-            required
-            placeholder="Your name"
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label className="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">
-            Email
-          </label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="your@email.com"
-            className={inputClass}
-          />
-        </div>
-      </div>
-      <div>
-        <label className="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">
-          Message
-        </label>
-        <textarea
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          required
-          rows={4}
-          placeholder="Your inquiry regarding provenance, condition, or acquisition..."
-          className={`${inputClass} resize-none`}
-        />
-      </div>
-
-      {status === 'error' && (
-        <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>
-      )}
-
-      <button
-        type="submit"
-        disabled={status === 'sending'}
-        className="px-8 py-3 rounded-full bg-gradient-cta text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-opacity duration-500 hover:opacity-90 disabled:opacity-50"
-      >
-        {status === 'sending' ? 'Sending…' : 'Request Provenance'}
-      </button>
-    </form>
-  )
-}
 
 export default function CarDetail() {
   const { slug } = useParams()
@@ -217,18 +120,6 @@ export default function CarDetail() {
               </section>
             )}
 
-            {/* Inquiry form */}
-            <section className="bg-surface-container-lowest py-24">
-              <div className="max-w-2xl mx-auto px-8">
-                <span className="block text-[10px] uppercase tracking-[0.3rem] text-outline mb-4">
-                  Acquisition Inquiry
-                </span>
-                <h2 className="text-4xl font-headline italic text-on-surface mb-12">
-                  Request Provenance
-                </h2>
-                <InquiryForm carId={car._id} />
-              </div>
-            </section>
           </>
         )}
       </main>

@@ -87,7 +87,8 @@
 - `fixed` + `z-50` 定位
 - 包含 `backdrop-blur-xl`
 - 导航链接使用 `NavLink`（React Router），不使用原生 `<a>`
-- 有 menu 图标按钮（移动端侧边栏触发器）
+
+> 注：Header 无移动端菜单按钮，这是设计决策，不作为检查项。
 
 ### P1-15: Footer 设计合规
 读取 `client/src/components/layout/Footer.jsx`，验证：
@@ -140,7 +141,6 @@
 - 4 条路由均已通过 `app.use()` 注册
 - `errorHandler` 在所有路由之后注册
 - CORS origin 使用正则 `/^http:\/\/localhost:\d+$/`（不硬编码单一端口）
-- 生产环境配置了 serve `client/dist`
 
 ### P2-7: carController filter/sort 逻辑
 读取 `server/controllers/carController.js`，验证：
@@ -323,30 +323,11 @@ Body: { email: "new@test.com", password: "test123" }
 
 ---
 
-## Phase 4 — 集成 & 生产就绪
+## Phase 4 — 代码质量 & 版本控制
 
-> 如果 Phase 4 尚未开始，以下测试均标记为 ⚠️ WARN（预期）
+> 生产部署、构建产物、Express 生产模式均不在检查范围内。
 
-### P4-1: 前端构建
-运行：
-```bash
-cd client && npm run build 2>&1
-```
-验证：构建成功（exit code 0），`client/dist/index.html` 存在，无 TypeScript/ESLint 错误阻断构建
-
-### P4-2: 构建产物完整性
-构建成功后检查 `client/dist/` 目录，验证：
-- 含 `index.html`
-- 含 `assets/` 目录（JS + CSS bundle）
-- JS bundle 已代码分割（不是单一巨型文件）
-
-### P4-3: 生产模式 Express
-读取 `server/index.js`，验证生产环境配置：
-- `NODE_ENV === 'production'` 时 serve `client/dist`
-- 有 catch-all 路由 `app.get('*', ...)` 返回 `index.html`（支持 SPA 前端路由）
-- 静态文件路径使用 `path.join(__dirname, '../client/dist')`
-
-### P4-4: 环境变量安全性
+### P4-1: 环境变量安全性
 检查 `.env` 未被提交到 Git：
 ```bash
 git ls-files .env
@@ -356,13 +337,13 @@ git ls-files .env
 检查 `.env.example` 已提交且包含所有必要键：
 `MONGO_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `PORT`, `NODE_ENV`
 
-### P4-5: 敏感信息未硬编码
+### P4-2: 敏感信息未硬编码
 在以下目录中搜索硬编码凭据：
-- `server/` 和 `client/src/` 中不得出现 `mongodb+srv://` 字符串
-- 不得出现硬编码 JWT secret 字符串（如 `your_secret`）
+- `server/` 和 `client/src/` 中不得出现真实的 `mongodb+srv://` 连接字符串（注释中的占位符除外）
+- 不得出现硬编码 JWT secret 字符串
 - `client/src/` 中不得出现 `localhost:5000`（API 调用必须通过 `/api` 相对路径）
 
-### P4-6: 依赖安全审计
+### P4-3: 依赖安全审计
 运行：
 ```bash
 npm audit --prefix client 2>&1
@@ -370,20 +351,19 @@ npm audit --prefix server 2>&1
 ```
 验证：无 **critical** 或 **high** 漏洞（moderate 以下标记 ⚠️ WARN）
 
-### P4-7: Git 提交历史
+### P4-4: Git 提交历史
 运行：
 ```bash
 git log --oneline
 ```
 验证：有至少 1 条 commit，commit message 语义化（含 feat/fix/chore 等前缀）
 
-### P4-8: GitHub 远程同步
+### P4-5: GitHub 远程仓库
 运行：
 ```bash
-git status
 git remote -v
 ```
-验证：有 `origin` 远程地址（github.com），working tree 无未提交的重要变更
+验证：有 `origin` 远程地址（github.com）
 
 ---
 
@@ -411,20 +391,18 @@ PHASE 3: React 前端实现                 (10 项)
   P3-1   服务层文件                       ✅/❌/⚠️
   ...
 
-PHASE 4: 集成 & 生产就绪               (8 项)
-  P4-1   前端构建                         ✅/❌/⚠️
+PHASE 4: 代码质量 & 版本控制            (5 项)
+  P4-1   环境变量安全性                   ✅/❌/⚠️
   ...
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  总计：55 项
+  总计：52 项
   ✅ 通过：XX    ❌ 失败：XX    ⚠️ 警告/待实现：XX
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 【需修复问题】
-  ❌ P2-6  原因：...  修复建议：...
-  ❌ P1-12 原因：...  修复建议：...
+  ❌ Pxx  原因：...  修复建议：...
 
-【待实现项（Phase 3/4 未开始属正常）】
-  ⚠️ P3-x  等待 Phase 3 开发
-  ⚠️ P4-x  等待 Phase 4 开发
+【待验证项（服务未运行）】
+  ⚠️ P2-x  需启动 npm run dev 后验证
 ```

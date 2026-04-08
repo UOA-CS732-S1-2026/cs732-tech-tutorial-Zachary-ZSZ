@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCar } from '../../hooks/useCars.js'
-import GhostButton from '../ui/GhostButton.jsx'
 
 const TABS = ['Overview', 'Specifications', 'History', 'Media']
 
@@ -11,8 +10,8 @@ export default function TechnicalSidebar({ slug }) {
   const { data: car, isLoading } = useCar(slug)
 
   return (
-    <aside className="w-[450px] bg-surface-container-lowest border-l border-outline-variant/10 overflow-y-auto flex-shrink-0">
-      <div className="sticky top-0 p-8 lg:p-12 space-y-10">
+    <aside className="w-[450px] bg-surface-container-lowest border-l border-outline-variant/10 flex-shrink-0">
+      <div className="sticky top-[140px] max-h-[calc(100vh-140px)] overflow-y-auto p-8 lg:p-12 space-y-10">
 
         {/* Header */}
         <div>
@@ -162,8 +161,11 @@ export default function TechnicalSidebar({ slug }) {
 
               {/* CTA */}
               <div className="pt-4">
-                <Link to={`/car/${car.slug}`} className="block mb-4">
-                  <GhostButton>Request Provenance</GhostButton>
+                <Link
+                  to={`/car/${car.slug}`}
+                  className="text-[10px] uppercase tracking-widest text-primary hover:opacity-70 transition-opacity duration-500"
+                >
+                  View Full Detail →
                 </Link>
               </div>
             </motion.div>

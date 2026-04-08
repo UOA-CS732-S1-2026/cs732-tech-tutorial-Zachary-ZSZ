@@ -1,20 +1,24 @@
+import { useRef } from 'react'
 import TimelineNode from './TimelineNode.jsx'
 
 export default function TimelineSection({ cars = [], selectedSlug, onSelect }) {
+  const nodeRefs = useRef({})
+
   return (
-    <section className="flex-1 relative py-24 bg-surface overflow-hidden">
+    <section className="flex-1 relative py-24 bg-surface">
       {/* Vertical center line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary-container/30 transform -translate-x-1/2" />
 
       <div className="max-w-6xl mx-auto px-4 space-y-32">
         {cars.map((car, index) => (
-          <TimelineNode
-            key={car._id ?? car.slug}
-            car={car}
-            index={index}
-            isSelected={selectedSlug === car.slug}
-            onClick={() => onSelect(car.slug)}
-          />
+          <div key={car._id ?? car.slug} ref={(el) => { nodeRefs.current[car.slug] = el }}>
+            <TimelineNode
+              car={car}
+              index={index}
+              isSelected={selectedSlug === car.slug}
+              onClick={() => onSelect(car.slug, nodeRefs.current[car.slug])}
+            />
+          </div>
         ))}
 
         {cars.length === 0 && (
