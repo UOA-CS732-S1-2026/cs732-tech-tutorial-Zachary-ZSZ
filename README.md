@@ -113,9 +113,10 @@ Open `.env` and configure each variable:
 
 ```env
 # ── MongoDB ──────────────────────────────────────────────────────────────────
-# Your MongoDB Atlas connection string.
-# Replace <user>, <password>, and <cluster> with your Atlas credentials.
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/classicride
+# The MONGO_URI for this project is provided via the Canvas assignment submission.
+# Please refer to the Canvas assignment page to obtain the connection string,
+# or contact zacharyzhang2088@gmail.com if you have any questions.
+MONGO_URI=<see Canvas assignment or contact zacharyzhang2088@gmail.com>
 
 # ── JSON Web Token ────────────────────────────────────────────────────────────
 # A long random string used to sign curator JWTs.
@@ -137,11 +138,7 @@ PORT=5000
 NODE_ENV=development
 ```
 
-> **MongoDB Atlas setup:**
-> 1. Create a free cluster at [cloud.mongodb.com](https://cloud.mongodb.com)
-> 2. Add a database user under **Security → Database Access**
-> 3. Whitelist your IP under **Security → Network Access** (or use `0.0.0.0/0` for local dev)
-> 4. Click **Connect → Drivers** and copy the connection string into `MONGO_URI`
+> **MongoDB credentials:** The `MONGO_URI` for this project is distributed through the Canvas assignment submission. If you are a course assessor, please check the Canvas assignment page for the connection string. For any other queries, reach out to **zacharyzhang2088@gmail.com**.
 
 ---
 
@@ -242,3 +239,14 @@ All commands are run from the **project root** unless noted.
 - **No production deployment is configured.** The project is intended to run locally. There is no CI/CD pipeline or hosting setup.
 - **Admin panel** is accessible at `/admin/login`. Use `POST /api/auth/register` (with a valid JWT) to create the initial curator account.
 - All car images are sourced from **Wikimedia Commons** (public domain / freely licensed). No third-party image CDN keys are required to run the project.
+
+---
+
+## Additional Folders
+
+The repository includes two folders that are **not part of the core project structure** and can be safely deleted if they are not needed:
+
+| Folder     | Description                                                                                      |
+|------------|--------------------------------------------------------------------------------------------------|
+| `design/`  | Personal UI design drafts and prototype files used as visual references during development. Not required to run the application. |
+| `dataset/` | Raw data files (CSV / JSON) used as the source material when writing the database seed script. Not required once the database has been seeded. |
