@@ -3,7 +3,27 @@
     "allow": [
       "Bash(find .:*)",
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:5000/api/health)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s \"http://localhost:5000/api/cars\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('total:', d['total']\\); [print\\('  -', c['name'], '|', c['year'], '|', c.get\\('marque',{}\\).get\\('name','NO_MARQUE'\\), '| slug:', c['slug']\\) for c in d['data'][:5]]\")",
+      "Bash(curl -s \"http://localhost:5000/api/cars?marque=porsche\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); cars=d['data']; print\\('total:', len\\(cars\\)\\); all_porsche=all\\(c.get\\('marque',{}\\).get\\('name',''\\)=='Porsche' for c in cars\\); print\\('all Porsche:', all_porsche\\)\")",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); console.log\\('total:',j.total\\); j.data.forEach\\(c=>console.log\\(' -',c.name,'|',c.marque.name\\)\\)\")",
+      "Bash(curl -s \"http://localhost:5000/api/cars?sort=year_asc\")",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); const years=j.data.map\\(c=>c.year\\); console.log\\('years:',years\\); console.log\\('asc ok:',years[0]<=years[years.length-1]\\)\")",
+      "Bash(curl -s \"http://localhost:5000/api/cars?sort=year_desc\")",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); const years=j.data.map\\(c=>c.year\\); console.log\\('years:',years\\); console.log\\('desc ok:',years[0]>=years[years.length-1]\\)\")",
+      "Bash(node -e \"const j=require\\('/tmp/p211.json'\\); console.log\\('total:',j.total\\); j.data.forEach\\(c=>console.log\\(' -',c.name,'|',c.marque.name\\)\\)\")",
+      "Bash(git -C D:/OneDrive/桌面/ClassicRide ls-files .env)",
+      "Bash(grep -v \".env.example\" echo \"---\" grep -r \"localhost:5000\" D:/OneDrive/桌面/ClassicRide/client/src/ --include=\"*.js\" --include=\"*.jsx\")",
+      "Bash(wc -l \"/d/OneDrive/桌面/ClassicRide/client/dist/assets/\"*.js)",
+      "Bash(powershell.exe:*)",
+      "Bash(node server/seed/seed.js)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:commons.wikimedia.org)"
     ]
   }
 }

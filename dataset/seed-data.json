@@ -1,0 +1,403 @@
+{
+  "marques": [
+    {
+      "slug": "bugatti",
+      "name": "Bugatti",
+      "biography": "Founded by Ettore Bugatti in Molsheim, Alsace, Bugatti is synonymous with art, speed, and exclusivity. From dominating pre-war Grand Prix racing with the Type 35 to redefining the hypercar era with the Veyron and Chiron, Bugatti has always pursued perfection at the intersection of engineering and artistry. Now under Rimac Group ownership, the brand enters its electrified future with the V16 hybrid Tourbillon.",
+      "foundedYear": 1909,
+      "country": "France",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Bugatti_logo.svg/200px-Bugatti_logo.svg.png"
+    },
+    {
+      "slug": "ferrari",
+      "name": "Ferrari",
+      "biography": "Founded by Enzo Ferrari, the Prancing Horse brand grew from a racing team into the world's most iconic sports car manufacturer. Ferrari's DNA is forged in Formula 1, with technology transfer from the track to the road defining every generation. From the legendary 250 GTO to the hybrid LaFerrari, Ferrari represents the ultimate fusion of passion, performance, and Italian craftsmanship.",
+      "foundedYear": 1947,
+      "country": "Italy",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Ferrari-Logo.svg/200px-Ferrari-Logo.svg.png"
+    },
+    {
+      "slug": "lamborghini",
+      "name": "Lamborghini",
+      "biography": "Born from Ferruccio Lamborghini's dissatisfaction with his Ferrari, Automobili Lamborghini has been the rebellious outsider of the supercar world since 1963. The Miura invented the mid-engine supercar layout, the Countach defined poster-car culture, and the brand continues to push boundaries with theatrical design and visceral V12 power. Now under Volkswagen Group (Audi), Lamborghini is transitioning to hybrid powertrains while preserving its wild DNA.",
+      "foundedYear": 1963,
+      "country": "Italy",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Lamborghini_Logo.svg/200px-Lamborghini_Logo.svg.png"
+    },
+    {
+      "slug": "porsche",
+      "name": "Porsche",
+      "biography": "Porsche is the quintessential driver's brand, built on a philosophy of continuous evolution rather than revolution. The 911's rear-engine flat-six layout has endured for over 60 years, while the brand has also produced game-changing supercars like the 959, Carrera GT, and 918 Spyder. Porsche dominates both road and track, holding more Le Mans victories than any other manufacturer.",
+      "foundedYear": 1931,
+      "country": "Germany",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Porsche_logo.svg/200px-Porsche_logo.svg.png"
+    },
+    {
+      "slug": "mercedes-benz",
+      "name": "Mercedes-Benz",
+      "biography": "As the world's oldest car manufacturer, Mercedes-Benz has been synonymous with automotive innovation since Karl Benz patented the first gasoline-powered automobile in 1886. The brand pioneered safety technologies including ABS, airbags, and crumple zones through its flagship S-Class. From the iconic 300 SL Gullwing to the AMG ONE with its F1-derived powertrain, Mercedes-Benz bridges luxury, technology, and performance like no other.",
+      "foundedYear": 1886,
+      "country": "Germany",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/200px-Mercedes-Logo.svg.png"
+    },
+    {
+      "slug": "bmw",
+      "name": "BMW",
+      "biography": "Bayerische Motoren Werke began as an aircraft engine manufacturer before pivoting to motorcycles and then automobiles. BMW's identity as the 'Ultimate Driving Machine' was forged through models like the 2002 and the M3, blending everyday practicality with genuine sporting intent. The M division remains the gold standard for high-performance luxury sedans, while the brand pushes into electrification with its i-series.",
+      "foundedYear": 1916,
+      "country": "Germany",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/200px-BMW.svg.png"
+    },
+    {
+      "slug": "volkswagen",
+      "name": "Volkswagen",
+      "biography": "Volkswagen — 'the people's car' — was born from Ferdinand Porsche's vision of affordable motoring for the masses. The Beetle became the best-selling single-model car in history, while the Golf GTI invented the hot hatchback segment. Today, VW heads one of the world's largest automotive groups (owning Porsche, Lamborghini, Bentley, Bugatti) and is leading Europe's transition to electric mobility with its ID. series.",
+      "foundedYear": 1937,
+      "country": "Germany",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/200px-Volkswagen_logo_2019.svg.png"
+    },
+    {
+      "slug": "ford",
+      "name": "Ford",
+      "biography": "Henry Ford didn't just build cars — he revolutionized manufacturing with the moving assembly line, making automobiles accessible to ordinary Americans. The Model T put the world on wheels, the Mustang created the pony car segment, and the GT40's four consecutive Le Mans victories (1966–1969) wrote one of motorsport's greatest chapters. Ford remains America's most iconic automaker.",
+      "foundedYear": 1903,
+      "country": "United States",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ford_Motor_Company_Logo.svg/200px-Ford_Motor_Company_Logo.svg.png"
+    },
+    {
+      "slug": "toyota",
+      "name": "Toyota",
+      "biography": "Toyota Motor Corporation transformed from a loom manufacturer into the world's largest automaker through relentless focus on quality, reliability, and efficiency. The Corolla became the best-selling car nameplate in history, the Prius pioneered mass-market hybrid technology, and the Supra earned legendary JDM status. Toyota's production system (TPS) revolutionized global manufacturing far beyond the automotive industry.",
+      "foundedYear": 1937,
+      "country": "Japan",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Toyota.svg/200px-Toyota.svg.png"
+    }
+  ],
+
+  "cars": [
+    {
+      "slug": "bugatti-type-57sc-atlantic",
+      "marque": "bugatti",
+      "name": "Type 57SC Atlantic",
+      "year": 1936,
+      "era": "golden-age",
+      "category": "Grand Tourer",
+      "description": "Art Deco design masterpiece by Jean Bugatti. Only 4 built; one of the most valuable cars in history with auction values exceeding $40 million. The riveted dorsal seam, teardrop body, and supercharged inline-8 represent the pinnacle of pre-war automotive artistry.",
+      "specs": {
+        "engine": "3.3L Supercharged Inline-8",
+        "power": "200 hp",
+        "topSpeed": "135 mph",
+        "weight": "950 kg"
+      },
+      "provenance": "Only 4 produced (1936–1938). Chassis #57374 sold for $30M+ in 2010; Chassis #57591 owned by Ralph Lauren. Won Pebble Beach Best of Show in 1990 and 2003.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "bugatti-veyron-16-4",
+      "marque": "bugatti",
+      "name": "Veyron 16.4",
+      "year": 2005,
+      "era": "modern-classic",
+      "category": "Sports",
+      "description": "The car that reignited the top-speed war. The Veyron's quad-turbocharged W16 engine was an unprecedented engineering achievement, combining 1,001 hp with luxury grand touring capability. It was the first production car to exceed 250 mph and launched the modern hypercar era under Volkswagen Group ownership.",
+      "specs": {
+        "engine": "8.0L Quad-Turbo W16",
+        "power": "1,001 hp",
+        "topSpeed": "253 mph",
+        "weight": "1,888 kg"
+      },
+      "provenance": "450 units produced (2005–2015). Developed under VW Group at a reported loss of €6M per unit. Super Sport variant set 267.8 mph record in 2010.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "ferrari-250-gto",
+      "marque": "ferrari",
+      "name": "250 GTO",
+      "year": 1962,
+      "era": "golden-age",
+      "category": "Racing",
+      "description": "The 'Holy Grail' of collector cars. Built for FIA Group 3 GT racing homologation, the 250 GTO combined a Colombo-designed 3.0L V12 with Scaglietti's aerodynamic bodywork. Only 36 were produced, each requiring personal approval from Enzo Ferrari. It dominated international GT racing from 1962 to 1964.",
+      "specs": {
+        "engine": "3.0L Colombo V12",
+        "power": "296 hp",
+        "topSpeed": "174 mph",
+        "weight": "880 kg"
+      },
+      "provenance": "Only 36 built. A 1963 example (chassis 4153GT) sold privately for $70M in 2018, making it the most expensive car ever sold. Buyers needed Enzo Ferrari's personal approval.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "ferrari-f40",
+      "marque": "ferrari",
+      "name": "F40",
+      "year": 1987,
+      "era": "muscle-era",
+      "category": "Sports",
+      "description": "The last car personally approved by Enzo Ferrari before his death in 1988, built to celebrate the company's 40th anniversary. The F40 was the first production car to break the 200 mph barrier. Its stripped-out, no-nonsense approach — carbon/Kevlar body, no ABS, no power steering — made it the purest supercar of its generation.",
+      "specs": {
+        "engine": "2.9L Twin-Turbo V8",
+        "power": "471 hp",
+        "topSpeed": "201 mph",
+        "weight": "1,100 kg"
+      },
+      "provenance": "1,315 produced (1987–1992). Originally planned at 400 units; demand forced increased production. During the late-1980s supercar boom, examples traded at 3× list price.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "lamborghini-miura",
+      "marque": "lamborghini",
+      "name": "Miura",
+      "year": 1966,
+      "era": "golden-age",
+      "category": "Sports",
+      "description": "Widely regarded as the world's first true supercar. Conceived by a trio of young engineers (Dallara, Stanzani, Wallace) and styled by Marcello Gandini at Bertone, the Miura placed a transverse V12 behind the driver — a layout that became the supercar standard. It redefined automotive performance and beauty overnight.",
+      "specs": {
+        "engine": "3.9L Transverse V12",
+        "power": "350 hp",
+        "topSpeed": "174 mph",
+        "weight": "980 kg"
+      },
+      "provenance": "Approximately 764 produced across P400, S, and SV variants (1966–1973). Featured in the opening sequence of 'The Italian Job' (1969). SV examples regularly exceed $3M at auction.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "lamborghini-countach",
+      "marque": "lamborghini",
+      "name": "Countach",
+      "year": 1974,
+      "era": "muscle-era",
+      "category": "Sports",
+      "description": "The ultimate poster car. Marcello Gandini's wedge-shaped design with scissor doors became the defining image of 1980s supercar culture. The Countach evolved through LP400, LP400S, LP500S, 5000QV, and 25th Anniversary editions over a 16-year production run, each iteration adding more drama and power.",
+      "specs": {
+        "engine": "3.9–5.2L V12",
+        "power": "375–455 hp",
+        "topSpeed": "183 mph",
+        "weight": "1,490 kg"
+      },
+      "provenance": "Approximately 2,049 produced (1974–1990). The LP400 'Periscopio' is the most collectible. Young Horacio Pagani worked on the 25th Anniversary edition's body strakes before founding his own company.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "porsche-911",
+      "marque": "porsche",
+      "name": "911",
+      "year": 1964,
+      "era": "golden-age",
+      "category": "Sports",
+      "description": "The most iconic sports car in history. Debuted at the 1963 Frankfurt Motor Show as the successor to the 356, the 911's rear-engine flat-six layout has endured through continuous evolution for over 60 years and eight generations (from the original to today's 992). No other car combines daily usability, motorsport pedigree, and design continuity so perfectly.",
+      "specs": {
+        "engine": "2.0L Air-Cooled Flat-6 (original)",
+        "power": "130 hp (original)",
+        "topSpeed": "131 mph (original)",
+        "weight": "1,080 kg (original)"
+      },
+      "provenance": "Continuous production since 1964. Originally named 901, renamed 911 after Peugeot trademark dispute. Over 1 million 911s have been produced. The air-cooled 993 generation (1994–1998) is the most collectible.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "porsche-918-spyder",
+      "marque": "porsche",
+      "name": "918 Spyder",
+      "year": 2013,
+      "era": "modern-classic",
+      "category": "Sports",
+      "description": "Porsche's first hybrid hypercar, one of the 'Holy Trinity' alongside the LaFerrari and McLaren P1. The 918 proved that electrification could enhance rather than diminish the supercar experience. It was the first street-legal car to break the 7-minute barrier at the Nürburgring Nordschleife with a 6:57 lap time.",
+      "specs": {
+        "engine": "4.6L NA V8 + 2 Electric Motors",
+        "power": "875 hp (combined)",
+        "topSpeed": "214 mph",
+        "weight": "1,674 kg"
+      },
+      "provenance": "918 units produced (2013–2015), a number chosen to match the model name. Originally priced at $845,000. Set multiple production car lap records including the Nürburgring 6:57.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "mercedes-benz-300-sl-gullwing",
+      "marque": "mercedes-benz",
+      "name": "300 SL Gullwing",
+      "year": 1954,
+      "era": "golden-age",
+      "category": "Grand Tourer",
+      "description": "A road car born directly from Mercedes-Benz's dominant W194 race car. The 300 SL was the world's first production car with mechanical fuel injection, giving it a significant power advantage. Its iconic gullwing doors were an engineering necessity — the tubular space frame chassis made conventional doors impossible.",
+      "specs": {
+        "engine": "3.0L Fuel-Injected Inline-6",
+        "power": "215 hp",
+        "topSpeed": "161 mph",
+        "weight": "1,295 kg"
+      },
+      "provenance": "1,400 Gullwing coupes built (1954–1957), followed by 1,858 Roadsters (1957–1963). First production car with fuel injection. Prices now range from $1M–$2M+ depending on condition.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "mercedes-benz-s-class-w126",
+      "marque": "mercedes-benz",
+      "name": "S-Class (W126)",
+      "year": 1979,
+      "era": "muscle-era",
+      "category": "Grand Tourer",
+      "description": "The W126 S-Class defined what 'the best car in the world' meant for an entire generation. It debuted the driver-side airbag (1981) and standard ABS, pioneering safety technologies now universal across all cars. Its build quality was legendary — many examples have exceeded 1 million kilometers.",
+      "specs": {
+        "engine": "Various (2.8L I6 to 5.6L V8)",
+        "power": "156–300 hp",
+        "topSpeed": "155 mph (limited)",
+        "weight": "1,600–1,800 kg"
+      },
+      "provenance": "Over 818,000 produced (1979–1991), the best-selling S-Class generation. Introduced the first production driver airbag in 1981. The 560 SEL remains the most sought-after variant.",
+      "images": [],
+      "featured": false
+    },
+    {
+      "slug": "bmw-2002-turbo",
+      "marque": "bmw",
+      "name": "2002 Turbo",
+      "year": 1973,
+      "era": "golden-age",
+      "category": "Sports",
+      "description": "Europe's first turbocharged production car and the spiritual origin of BMW's performance DNA. The 2002 series (1968–1976) created the 'compact sport sedan' category, proving that a small, affordable car could deliver genuine driving thrills. The Turbo variant was controversial at launch — its reversed 'Turbo' decal on the front spoiler was deemed provocative during the oil crisis.",
+      "specs": {
+        "engine": "2.0L Turbocharged Inline-4",
+        "power": "170 hp",
+        "topSpeed": "130 mph",
+        "weight": "1,080 kg"
+      },
+      "provenance": "Only 1,672 2002 Turbos built (1973–1974), cut short by the oil crisis. The broader 2002 series sold over 860,000 units. Established the template for every 3-Series that followed.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "bmw-e30-m3",
+      "marque": "bmw",
+      "name": "E30 M3",
+      "year": 1986,
+      "era": "muscle-era",
+      "category": "Racing",
+      "description": "The car that launched BMW's legendary M division into mainstream consciousness. Built for DTM (German Touring Car Championship) homologation, the E30 M3's high-revving S14 4-cylinder engine, box-flared fenders, and razor-sharp handling made it the benchmark for sports sedans. Its dominance on track — multiple DTM titles, numerous rally victories — cemented the 'M' badge as a symbol of motorsport excellence.",
+      "specs": {
+        "engine": "2.3L High-Rev Inline-4 (S14)",
+        "power": "195 hp (200 hp Evolution)",
+        "topSpeed": "146 mph",
+        "weight": "1,165 kg"
+      },
+      "provenance": "Approximately 17,970 produced (1986–1991). Won two DTM championships and countless touring car races worldwide. Sport Evolution variant (500 units, 238 hp) is the most collectible, valued over $150K.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "volkswagen-beetle",
+      "marque": "volkswagen",
+      "name": "Beetle (Type 1)",
+      "year": 1938,
+      "era": "golden-age",
+      "category": "Roadster",
+      "description": "The car that mobilized the world. Designed by Ferdinand Porsche as an affordable 'people's car', the Beetle became the best-selling single-design automobile in history. Its air-cooled rear-engine layout, simple mechanicals, and cheerful character made it beloved across continents and generations. From post-war Germany to California surf culture, the Beetle transcended transportation to become a cultural icon.",
+      "specs": {
+        "engine": "1.1–1.6L Air-Cooled Flat-4",
+        "power": "25–50 hp",
+        "topSpeed": "80 mph",
+        "weight": "840 kg"
+      },
+      "provenance": "Over 21.5 million produced (1938–2003), making it the most-produced car of a single design in history. Original production ended in Mexico in 2003. VW later revived the name for the New Beetle (1997) and Beetle A5 (2011).",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "volkswagen-golf-gti-mk1",
+      "marque": "volkswagen",
+      "name": "Golf GTI (Mk1)",
+      "year": 1976,
+      "era": "muscle-era",
+      "category": "Sports",
+      "description": "The car that invented the 'hot hatchback' — a formula of taking an affordable, practical hatchback and injecting genuine sports car performance. The original GTI combined the Golf's practicality with a fuel-injected 1.6L engine, sport suspension, and iconic tartan seats. It proved that speed and fun didn't require sacrificing everyday usability, creating an entirely new market segment.",
+      "specs": {
+        "engine": "1.6L Fuel-Injected Inline-4",
+        "power": "110 hp",
+        "topSpeed": "113 mph",
+        "weight": "810 kg"
+      },
+      "provenance": "Originally intended as a limited run of 5,000 units; overwhelming demand led to over 460,000 Mk1 GTIs sold. The red-stripe grille, golf-ball gear knob, and tartan upholstery became defining design elements copied industry-wide.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "ford-model-t",
+      "marque": "ford",
+      "name": "Model T",
+      "year": 1908,
+      "era": "golden-age",
+      "category": "Roadster",
+      "description": "The car that changed civilization. Henry Ford's Model T didn't just put America on wheels — its revolutionary moving assembly line transformed global manufacturing forever. By driving the price down from $850 to $260, Ford made the automobile accessible to the average working family for the first time, fundamentally reshaping cities, culture, and the American way of life.",
+      "specs": {
+        "engine": "2.9L Inline-4",
+        "power": "20 hp",
+        "topSpeed": "45 mph",
+        "weight": "540 kg"
+      },
+      "provenance": "Over 15 million produced (1908–1927). Assembly line innovation reduced build time from 12 hours to 93 minutes. At peak production, a Model T rolled off the line every 24 seconds.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "ford-gt40",
+      "marque": "ford",
+      "name": "GT40",
+      "year": 1966,
+      "era": "golden-age",
+      "category": "Racing",
+      "description": "Born from Henry Ford II's vendetta against Enzo Ferrari after a failed acquisition deal. The GT40 was built with one mission: beat Ferrari at Le Mans. It succeeded spectacularly, winning the 24 Hours of Le Mans four consecutive years (1966–1969), including a legendary 1-2-3 finish in 1966. The story was immortalized in the 2019 film 'Ford v Ferrari'.",
+      "specs": {
+        "engine": "7.0L Ford V8 (Mk II)",
+        "power": "485 hp",
+        "topSpeed": "210 mph",
+        "weight": "1,100 kg"
+      },
+      "provenance": "Approximately 105 GT40s built across all variants (1964–1969). Named GT40 because it stood just 40 inches (101.6 cm) tall. The modern Ford GT (2005, 2017) pays homage to this legend.",
+      "images": [],
+      "featured": true
+    },
+    {
+      "slug": "toyota-corolla",
+      "marque": "toyota",
+      "name": "Corolla",
+      "year": 1966,
+      "era": "golden-age",
+      "category": "Roadster",
+      "description": "The best-selling car nameplate in automotive history. Over 12 generations and nearly 60 years, the Corolla has represented Toyota's core philosophy: build a reliable, affordable, fuel-efficient car that anyone can depend on. It has been sold in over 150 countries and serves as transportation backbone for millions of families worldwide.",
+      "specs": {
+        "engine": "Various (1.1L–2.0L across generations)",
+        "power": "Various (60–169 hp)",
+        "topSpeed": "Various",
+        "weight": "Various"
+      },
+      "provenance": "Over 50 million sold across 12 generations since 1966, making it the best-selling car nameplate ever. Surpassed the VW Beetle's record in 1997. Currently in its 12th generation with hybrid powertrains.",
+      "images": [],
+      "featured": false
+    },
+    {
+      "slug": "toyota-supra-a80",
+      "marque": "toyota",
+      "name": "Supra (A80 / Mk4)",
+      "year": 1993,
+      "era": "modern-classic",
+      "category": "Sports",
+      "description": "The A80 Supra achieved legendary status through its bulletproof 2JZ-GTE twin-turbo inline-6 engine, capable of handling over 1,000 hp with stock internals. It became the ultimate tuner car and JDM icon, cemented in popular culture by Paul Walker's orange Supra in 'The Fast and the Furious' (2001). The 2JZ engine's overengineered reliability made it the foundation of an entire aftermarket industry.",
+      "specs": {
+        "engine": "3.0L 2JZ-GTE Twin-Turbo Inline-6",
+        "power": "276 hp (320 hp actual)",
+        "topSpeed": "155 mph (limited)",
+        "weight": "1,510 kg"
+      },
+      "provenance": "Produced 1993–2002. The 2JZ engine could reliably produce 1,000+ hp with modifications. Values have skyrocketed from under $40K to over $150K+ for clean examples, driven by Fast & Furious nostalgia and JDM collector demand.",
+      "images": [],
+      "featured": true
+    }
+  ]
+}
