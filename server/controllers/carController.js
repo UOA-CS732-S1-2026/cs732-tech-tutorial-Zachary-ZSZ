@@ -1,6 +1,8 @@
 import Car from '../models/Car.js'
 import Marque from '../models/Marque.js'
 
+// SORT_MAP keys must match the values in client/src/components/filter/FilterBar.jsx
+// SORT_OPTIONS. Unknown sort values fall back to year_asc (see getCars below).
 const SORT_MAP = {
   year_asc:  { year:  1 },
   year_desc: { year: -1 },
@@ -27,6 +29,8 @@ export const getCars = async (req, res, next) => {
 
     const sortBy = SORT_MAP[sort] ?? SORT_MAP.year_asc
 
+    // .lean() returns plain JS objects (faster than Mongoose documents).
+    // virtuals: true is required to include the computed primaryImage virtual field.
     const cars = await Car.find(filter)
       .sort(sortBy)
       .populate('marque', 'name slug country')

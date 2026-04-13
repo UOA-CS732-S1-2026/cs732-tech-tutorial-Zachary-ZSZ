@@ -2,6 +2,7 @@ import { Chip } from '../ui/index.js'
 import useFilterStore from '../../store/filterStore.js'
 import { useMarques } from '../../hooks/useMarques.js'
 
+// Must mirror the SORT_MAP keys defined in server/controllers/carController.js.
 const SORT_OPTIONS = [
   { label: 'Year ↑',  value: 'year_asc' },
   { label: 'Year ↓',  value: 'year_desc' },
@@ -29,6 +30,7 @@ export default function FilterBar({ total }) {
                   key={m.slug}
                   label={m.name}
                   active={activeMarque === m.slug}
+                  // Clicking an active chip deselects it (toggle pattern)
                   onClick={() => setMarque(activeMarque === m.slug ? null : m.slug)}
                 />
               ))}

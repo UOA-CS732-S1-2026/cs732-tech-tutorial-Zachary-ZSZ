@@ -2,6 +2,9 @@ import { useRef } from 'react'
 import TimelineNode from './TimelineNode.jsx'
 
 export default function TimelineSection({ cars = [], selectedSlug, onSelect }) {
+  // nodeRefs stores a DOM ref for each rendered car node, keyed by slug.
+  // This allows the parent (Home) to receive the element in onSelect() and
+  // scroll it into view without needing a separate state update cycle.
   const nodeRefs = useRef({})
 
   return (

@@ -24,6 +24,8 @@ function HeroSection() {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
+    // 4500 ms gives the crossfade transition (1200 ms) enough breathing room
+    // before the next image starts fading in, avoiding a visual double-fade.
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % BANNER_IMAGES.length)
     }, 4500)
@@ -123,10 +125,13 @@ export default function Home() {
               cars={cars}
               selectedSlug={selectedCarSlug}
               onSelect={(slug, element) => {
+                // Clicking the same node a second time deselects it and clears the sidebar.
                 const isDeselect = selectedCarSlug === slug
                 setSelectedCarSlug(isDeselect ? null : slug)
                 if (!isDeselect && element) {
-                  const OFFSET = 140 // header (80) + filterbar (~60)
+                  // OFFSET = header (80px) + FilterBar (~60px).
+                  // Must stay in sync with top-[140px] in TechnicalSidebar.
+                  const OFFSET = 140
                   const y = element.getBoundingClientRect().top + window.scrollY - OFFSET
                   window.scrollTo({ top: y, behavior: 'smooth' })
                 }

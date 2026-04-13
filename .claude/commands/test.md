@@ -1,408 +1,408 @@
 # ClassicRide — Full Project Test Suite
 
-你是 ClassicRide MERN 项目的自动化测试执行器。按顺序运行以下四个阶段的完整测试套件，并输出结构化测试报告。
+You are an automated test runner for the ClassicRide MERN project. Execute the complete test suite in the following four phases in order, and output a structured test report.
 
-## 执行规则
+## Execution Rules
 
-- ✅ **PASS** — 检查通过
-- ❌ **FAIL** — 检查失败，必须显示实际错误值
-- ⚠️ **WARN** — 文件/功能尚未实现（对应阶段未完成时属预期，不计入失败）
-- API 测试假设服务端运行在 `http://localhost:5000`，前端运行在 `http://localhost:5173`
-- 未启动服务时，API 类测试标记为 ⚠️ WARN 并说明原因
-- 最终输出汇总表
+- ✅ **PASS** — check passed
+- ❌ **FAIL** — check failed; must display the actual error value
+- ⚠️ **WARN** — file/feature not yet implemented (expected when the corresponding phase is incomplete; does not count as a failure)
+- API tests assume the server is running at `http://localhost:5000` and the frontend at `http://localhost:5173`
+- If services are not started, mark API tests as ⚠️ WARN with the reason
+- Output a summary table at the end
 
 ---
 
-## Phase 1 — 设计系统迁移 & React 脚手架
+## Phase 1 — Design System Migration & React Scaffold
 
-### P1-1: Monorepo 根目录结构
-检查以下文件存在：
+### P1-1: Monorepo Root Structure
+Check that the following files exist:
 `package.json`, `.gitignore`, `.gitattributes`, `.env.example`, `CLAUDE.md`
 
-验证根 `package.json` 的 scripts 包含：`dev`（concurrently）、`build`、`start`、`seed`
+Verify that the root `package.json` scripts include: `dev` (concurrently), `build`, `start`, `seed`
 
-### P1-2: 客户端项目结构
-检查以下文件存在：
+### P1-2: Client Project Structure
+Check that the following files exist:
 `client/package.json`, `client/vite.config.js`, `client/index.html`, `client/postcss.config.js`, `client/tailwind.config.js`
 
-验证 `client/vite.config.js` 配置了 `/api` 代理指向 `localhost:5000`
+Verify that `client/vite.config.js` configures a `/api` proxy pointing to `localhost:5000`
 
-### P1-3: Tailwind 颜色 Token 完整性
-读取 `client/tailwind.config.js`，验证 `theme.extend.colors` 中包含以下关键 token：
+### P1-3: Tailwind Color Token Completeness
+Read `client/tailwind.config.js` and verify that `theme.extend.colors` contains the following key tokens:
 `primary`, `primary-container`, `on-primary`, `surface`, `surface-container-lowest`, `surface-container-low`, `surface-container-high`, `surface-container-highest`, `surface-bright`, `surface-variant`, `on-surface`, `on-surface-variant`, `outline`, `outline-variant`, `background`
 
-### P1-4: Tailwind 语义字号
-验证 `theme.extend.fontSize` 包含：`display-lg`, `display`, `headline`, `title`, `label-sm`
-验证 `display-lg` 的 lineHeight ≤ 1.1（monumental 字号需紧凑行高）
+### P1-4: Tailwind Semantic Font Sizes
+Verify that `theme.extend.fontSize` contains: `display-lg`, `display`, `headline`, `title`, `label-sm`
+Verify that `display-lg` has a lineHeight <= 1.1 (monumental sizes require compact line height)
 
-### P1-5: Tailwind 字体族 & 圆角
-验证 `fontFamily` 包含：`headline`（Noto Serif）、`body`（Inter）、`label`（Inter）
-验证 `borderRadius` 包含：`DEFAULT`（1rem）、`lg`、`xl`、`full`（9999px）
+### P1-5: Tailwind Font Families & Border Radius
+Verify that `fontFamily` contains: `headline` (Noto Serif), `body` (Inter), `label` (Inter)
+Verify that `borderRadius` contains: `DEFAULT` (1rem), `lg`, `xl`, `full` (9999px)
 
-### P1-6: index.css 自定义工具类
-读取 `client/src/styles/index.css`，验证包含：
-- `@tailwind base/components/utilities` 三行指令
-- `.vignette-overlay`（radial-gradient）
-- `.sidebar-transition`（cubic-bezier 奢侈过渡）
-- `.shadow-ambient`（高模糊低扩散阴影）
-- `.bg-gradient-cta`（45° 金色渐变）
+### P1-6: index.css Custom Utility Classes
+Read `client/src/styles/index.css` and verify it contains:
+- `@tailwind base/components/utilities` — all three directives
+- `.vignette-overlay` (radial-gradient)
+- `.sidebar-transition` (cubic-bezier luxury transition)
+- `.shadow-ambient` (high-blur low-spread shadow)
+- `.bg-gradient-cta` (45° gold gradient)
 
-### P1-7: main.jsx Provider 装配顺序
-读取 `client/src/main.jsx`，验证：
-- `QueryClientProvider` 包裹 `BrowserRouter`，或 `BrowserRouter` 包裹 `QueryClientProvider`，两者都包裹 `<App />`
-- `QueryClient` 配置了 `staleTime`（不使用默认 0）
+### P1-7: main.jsx Provider Assembly Order
+Read `client/src/main.jsx` and verify:
+- `QueryClientProvider` wraps `BrowserRouter`, or `BrowserRouter` wraps `QueryClientProvider`, and both wrap `<App />`
+- `QueryClient` is configured with `staleTime` (not using the default 0)
 
-### P1-8: App.jsx 路由表完整性
-读取 `client/src/App.jsx`，验证包含以下 6 条路由：
-`/`, `/marque/:slug`, `/car/:slug`, `/archive`, `/admin/login`, `/admin`（`/admin` 受 ProtectedRoute 保护）
+### P1-8: App.jsx Route Table Completeness
+Read `client/src/App.jsx` and verify it contains the following 6 routes:
+`/`, `/marque/:slug`, `/car/:slug`, `/archive`, `/admin/login`, `/admin` (`/admin` protected by ProtectedRoute)
 
-### P1-9: ProtectedRoute 安全逻辑
-读取 `client/src/components/auth/ProtectedRoute.jsx`，验证：
-- 读取 localStorage `token`
-- 无 token 时使用 `<Navigate>` 重定向至 `/admin/login`，不渲染子组件
+### P1-9: ProtectedRoute Security Logic
+Read `client/src/components/auth/ProtectedRoute.jsx` and verify:
+- Reads `token` from localStorage
+- When no token, redirects to `/admin/login` using `<Navigate>` without rendering child components
 
-### P1-10: UI 原子组件导出
-读取 `client/src/components/ui/index.js`，验证导出了：`Chip`, `PillButton`, `GhostButton`, `VignetteImage`, `SectionLabel`
+### P1-10: UI Atomic Component Exports
+Read `client/src/components/ui/index.js` and verify it exports: `Chip`, `PillButton`, `GhostButton`, `VignetteImage`, `SectionLabel`
 
-### P1-11: Chip 组件设计合规
-读取 `client/src/components/ui/Chip.jsx`，验证：
-- active 时 class 包含 `bg-primary` 和 `text-on-primary`
-- inactive 时 class 包含 `bg-surface-container-high`
-- transition duration 在 300ms–600ms 范围内（不得小于 300ms 或大于 600ms）
+### P1-11: Chip Component Design Compliance
+Read `client/src/components/ui/Chip.jsx` and verify:
+- Active state class includes `bg-primary` and `text-on-primary`
+- Inactive state class includes `bg-surface-container-high`
+- Transition duration is in the 300ms–600ms range (must not be less than 300ms or greater than 600ms)
 
-### P1-12: VignetteImage 动画合规
-读取 `client/src/components/ui/VignetteImage.jsx`，验证：
-- 使用 `duration-500`（不得使用 `duration-700`，超出 600ms 奢侈上限）
-- 包含 `ease-in-out`
-- 包含 `vignette-overlay` class
-- 有 `loading="lazy"` 图片懒加载
+### P1-12: VignetteImage Animation Compliance
+Read `client/src/components/ui/VignetteImage.jsx` and verify:
+- Uses `duration-500` (must not use `duration-700`, which exceeds the 600ms luxury limit)
+- Includes `ease-in-out`
+- Includes `vignette-overlay` class
+- Has `loading="lazy"` for lazy image loading
 
-### P1-13: PillButton 三态变体
-读取 `client/src/components/ui/PillButton.jsx`，验证：
-- 支持 `variant="primary"` / `"ghost"` / `"gradient"` 三种变体
-- gradient 变体使用 `bg-gradient-cta`
+### P1-13: PillButton Three-State Variants
+Read `client/src/components/ui/PillButton.jsx` and verify:
+- Supports `variant="primary"` / `"ghost"` / `"gradient"` three variants
+- Gradient variant uses `bg-gradient-cta`
 
-### P1-14: Header Glassmorphism 合规
-读取 `client/src/components/layout/Header.jsx`，验证：
-- `fixed` + `z-50` 定位
-- 包含 `backdrop-blur-xl`
-- 导航链接使用 `NavLink`（React Router），不使用原生 `<a>`
+### P1-14: Header Glassmorphism Compliance
+Read `client/src/components/layout/Header.jsx` and verify:
+- `fixed` + `z-50` positioning
+- Includes `backdrop-blur-xl`
+- Navigation links use `NavLink` (React Router), not native `<a>` tags
 
-> 注：Header 无移动端菜单按钮，这是设计决策，不作为检查项。
+> Note: Header has no mobile menu button — this is an intentional design decision and is not a check item.
 
-### P1-15: Footer 设计合规
-读取 `client/src/components/layout/Footer.jsx`，验证：
-- 使用 `border-outline-variant/20` 顶部边框（遵循 No-Line Rule）
-- 版权年份动态生成（`new Date().getFullYear()`）
-- 链接使用 `Link`（React Router）
+### P1-15: Footer Design Compliance
+Read `client/src/components/layout/Footer.jsx` and verify:
+- Uses `border-outline-variant/20` top border (follows No-Line Rule)
+- Copyright year is dynamically generated (`new Date().getFullYear()`)
+- Links use `Link` (React Router)
 
 ---
 
 ## Phase 2 — MongoDB Schema & Express API
 
-### P2-1: 服务端文件结构
-检查以下文件全部存在：
+### P2-1: Server File Structure
+Check that all of the following files exist:
 `server/index.js`, `server/models/Car.js`, `server/models/Marque.js`, `server/models/Inquiry.js`, `server/models/User.js`, `server/controllers/carController.js`, `server/controllers/marqueController.js`, `server/controllers/inquiryController.js`, `server/controllers/authController.js`, `server/routes/cars.js`, `server/routes/marques.js`, `server/routes/inquiries.js`, `server/routes/auth.js`, `server/middleware/auth.js`, `server/middleware/errorHandler.js`, `server/seed/seed.js`
 
-### P2-2: Car Schema 完整性
-读取 `server/models/Car.js`，验证：
-- `slug` 有 `unique: true` 和 `index: true`
-- `marque` 是 ObjectId ref `'Marque'`
-- `era` 有 enum 约束
-- `category` 有 enum 约束
-- `specs` 是嵌套 Schema（含 engine/power/topSpeed/weight）
-- `images` 是数组 Schema（含 url/alt/primary）
-- 有 `primaryImage` virtual 字段
-- 有 `timestamps: true`
+### P2-2: Car Schema Completeness
+Read `server/models/Car.js` and verify:
+- `slug` has `unique: true` and `index: true`
+- `marque` is an ObjectId ref `'Marque'`
+- `era` has an enum constraint
+- `category` has an enum constraint
+- `specs` is a nested Schema (containing engine/power/topSpeed/weight)
+- `images` is an array Schema (containing url/alt/primary)
+- Has a `primaryImage` virtual field
+- Has `timestamps: true`
 
-### P2-3: User Schema 安全性
-读取 `server/models/User.js`，验证：
-- 字段名为 `passwordHash`（不是 `password`）
-- `toJSON` transform 中删除了 `passwordHash`
-- 有 `comparePassword` 实例方法（使用 bcrypt.compare）
+### P2-3: User Schema Security
+Read `server/models/User.js` and verify:
+- Field is named `passwordHash` (not `password`)
+- `toJSON` transform removes `passwordHash`
+- Has a `comparePassword` instance method (using bcrypt.compare)
 
-### P2-4: auth 中间件完整性
-读取 `server/middleware/auth.js`，验证：
-- 检查 `Bearer ` 前缀
-- 无 token 返回 401
-- 使用 `jwt.verify` 并传入 `process.env.JWT_SECRET`
-- 验证失败返回 401
+### P2-4: Auth Middleware Completeness
+Read `server/middleware/auth.js` and verify:
+- Checks for `Bearer ` prefix
+- Returns 401 when no token
+- Uses `jwt.verify` passing `process.env.JWT_SECRET`
+- Returns 401 on verification failure
 
-### P2-5: errorHandler 覆盖范围
-读取 `server/middleware/errorHandler.js`，验证处理：
+### P2-5: errorHandler Coverage
+Read `server/middleware/errorHandler.js` and verify it handles:
 - `ValidationError` → 400
-- code `11000`（重复键）→ 409
+- Code `11000` (duplicate key) → 409
 - `CastError` → 400
-- 默认 → err.status 或 500
+- Default → err.status or 500
 
-### P2-6: server/index.js 装配正确性
-读取 `server/index.js`，验证：
-- `dotenv` 使用绝对路径加载（`resolve(__dirname, '../.env')`），不使用 `import 'dotenv/config'`
-- 4 条路由均已通过 `app.use()` 注册
-- `errorHandler` 在所有路由之后注册
-- CORS origin 使用正则 `/^http:\/\/localhost:\d+$/`（不硬编码单一端口）
+### P2-6: server/index.js Assembly Correctness
+Read `server/index.js` and verify:
+- `dotenv` loads using an absolute path (`resolve(__dirname, '../.env')`), not `import 'dotenv/config'`
+- All 4 routes are registered via `app.use()`
+- `errorHandler` is registered after all routes
+- CORS origin uses a regex `/^http:\/\/localhost:\d+$/` (does not hardcode a single port)
 
-### P2-7: carController filter/sort 逻辑
-读取 `server/controllers/carController.js`，验证：
-- 支持 `marque` 查询参数（先查 Marque slug → ObjectId）
-- 支持 `era`, `category`, `featured` 过滤
-- 有 SORT_MAP 定义 `year_asc`, `year_desc`, `name_az`, `name_za`
-- getCar 使用 `.populate('marque')`
-- 所有方法有 try/catch 并调用 `next(err)`
+### P2-7: carController Filter/Sort Logic
+Read `server/controllers/carController.js` and verify:
+- Supports `marque` query parameter (resolves Marque slug → ObjectId first)
+- Supports `era`, `category`, `featured` filters
+- Has a SORT_MAP defining `year_asc`, `year_desc`, `name_az`, `name_za`
+- getCar uses `.populate('marque')`
+- All methods have try/catch and call `next(err)`
 
-### P2-8: seed 脚本结构
-读取 `server/seed/seed.js`，验证：
-- 先 `deleteMany()` 清空后再 `insertMany()`（幂等）
-- marque slug → ObjectId 映射（不硬编码 ObjectId 字符串）
-- `mongoose.disconnect()` 在 finally 中执行
-- 包含 >= 3 个品牌，>= 4 辆车
+### P2-8: Seed Script Structure
+Read `server/seed/seed.js` and verify:
+- Runs `deleteMany()` to clear before `insertMany()` (idempotent)
+- Maps marque slug → ObjectId (does not hardcode ObjectId strings)
+- `mongoose.disconnect()` is called in a finally block
+- Contains >= 3 marques and >= 4 cars
 
-### P2-9: API 健康检查
+### P2-9: API Health Check
 ```
 GET http://localhost:5000/api/health
 ```
-验证：HTTP 200，`status: "ok"`，`db: "connected"`
+Verify: HTTP 200, `status: "ok"`, `db: "connected"`
 
-### P2-10: GET /api/cars 基础列表
+### P2-10: GET /api/cars Basic List
 ```
 GET http://localhost:5000/api/cars
 ```
-验证：响应含 `data`（数组）和 `total`（数字），`total >= 2`，每条记录含 `slug`, `name`, `year`, `marque.name`
+Verify: response contains `data` (array) and `total` (number), `total >= 2`, each record contains `slug`, `name`, `year`, `marque.name`
 
-### P2-11: GET /api/cars 品牌过滤
+### P2-11: GET /api/cars Marque Filter
 ```
 GET http://localhost:5000/api/cars?marque=porsche
 ```
-验证：所有返回记录的 `marque.name` 均为 `Porsche`
+Verify: all returned records have `marque.name` equal to `Porsche`
 
-### P2-12: GET /api/cars 年份排序
+### P2-12: GET /api/cars Year Sorting
 ```
 GET http://localhost:5000/api/cars?sort=year_asc
 GET http://localhost:5000/api/cars?sort=year_desc
 ```
-验证：year_asc 第一条 year ≤ 最后一条；year_desc 反之
+Verify: year_asc first record year <= last record; year_desc is the reverse
 
-### P2-13: GET /api/cars/:slug 单车详情
+### P2-13: GET /api/cars/:slug Single Car Detail
 ```
 GET http://localhost:5000/api/cars/911-carrera-rs-27
 ```
-验证：`name: "911 Carrera RS 2.7"`，`specs` 四个字段均非空，`provenance` 非空，`marque` 已完整 populate
+Verify: `name: "911 Carrera RS 2.7"`, all four `specs` fields are non-empty, `provenance` is non-empty, `marque` is fully populated
 
 ### P2-14: GET /api/cars/:slug 404
 ```
 GET http://localhost:5000/api/cars/does-not-exist
 ```
-验证：HTTP 404，响应含 `error` 字段
+Verify: HTTP 404, response contains `error` field
 
-### P2-15: GET /api/marques 列表
+### P2-15: GET /api/marques List
 ```
 GET http://localhost:5000/api/marques
 ```
-验证：数组长度 >= 2，每条含 `slug`, `name`, `biography`
+Verify: array length >= 2, each record contains `slug`, `name`, `biography`
 
-### P2-16: GET /api/marques/:slug 含旗下车辆
+### P2-16: GET /api/marques/:slug With Cars
 ```
 GET http://localhost:5000/api/marques/porsche
 ```
-验证：含 `biography`（非空），含 `cars` 数组（length >= 1），cars 按 year 升序
+Verify: contains `biography` (non-empty), contains `cars` array (length >= 1), cars sorted by year ascending
 
-### P2-17: POST /api/inquiries 公开提交
-先从 GET /api/cars 获取真实 `_id`，然后：
+### P2-17: POST /api/inquiries Public Submission
+First fetch a real `_id` from GET /api/cars, then:
 ```
 POST http://localhost:5000/api/inquiries
 Body: { car: "<real_id>", visitorName: "Test User", email: "test@classicride.test", message: "Interested in provenance." }
 ```
-验证：HTTP 201，响应含 `message` 和 `id`
+Verify: HTTP 201, response contains `message` and `id`
 
-### P2-18: POST /api/inquiries 字段校验
+### P2-18: POST /api/inquiries Field Validation
 ```
 POST http://localhost:5000/api/inquiries
 Body: { visitorName: "No Email" }
 ```
-验证：HTTP 400，响应含 `error`
+Verify: HTTP 400, response contains `error`
 
-### P2-19: GET /api/inquiries 未授权拦截
+### P2-19: GET /api/inquiries Unauthorized Block
 ```
 GET http://localhost:5000/api/inquiries
 ```
-验证：HTTP 401，`error: "No token provided"`
+Verify: HTTP 401, `error: "No token provided"`
 
-### P2-20: POST /api/auth/login 凭据错误
+### P2-20: POST /api/auth/login Wrong Credentials
 ```
 POST http://localhost:5000/api/auth/login
 Body: { email: "nobody@test.com", password: "wrong" }
 ```
-验证：HTTP 401，`error: "Invalid credentials"`
+Verify: HTTP 401, `error: "Invalid credentials"`
 
-### P2-21: POST /api/auth/login 缺少字段
+### P2-21: POST /api/auth/login Missing Fields
 ```
 POST http://localhost:5000/api/auth/login
 Body: { email: "test@test.com" }
 ```
-验证：HTTP 400，响应含 `error`
+Verify: HTTP 400, response contains `error`
 
-### P2-22: POST /api/auth/register 未授权拦截
+### P2-22: POST /api/auth/register Unauthorized Block
 ```
 POST http://localhost:5000/api/auth/register
 Body: { email: "new@test.com", password: "test123" }
 ```
-验证：HTTP 401（register 受 auth 中间件保护）
+Verify: HTTP 401 (register is protected by auth middleware)
 
 ---
 
-## Phase 3 — React 前端实现
+## Phase 3 — React Frontend Implementation
 
-> 如果 Phase 3 尚未开始，以下测试均标记为 ⚠️ WARN（预期）
+> If Phase 3 has not started, all tests below are marked ⚠️ WARN (expected)
 
-### P3-1: 服务层文件
-检查 `client/src/services/api.js` 存在，验证：
-- 创建了 axios 实例（`axios.create`）
-- `baseURL` 为 `/api`（相对路径，走 Vite 代理）
-- 有 request interceptor 附加 JWT Bearer token
-- 导出了 `getCars`, `getCar`, `getMarques`, `postInquiry` 等函数
+### P3-1: Service Layer File
+Check that `client/src/services/api.js` exists and verify:
+- Creates an axios instance (`axios.create`)
+- `baseURL` is `/api` (relative path, routed via Vite proxy)
+- Has a request interceptor that attaches a JWT Bearer token
+- Exports `getCars`, `getCar`, `getMarques`, `postInquiry`, and other functions
 
 ### P3-2: Zustand Filter Store
-检查 `client/src/store/filterStore.js` 存在，验证：
-- 使用 `create`（Zustand）
-- 状态包含：`activeMarque`, `activeEra`, `sort`
-- 包含 setter 方法：`setMarque`, `setEra`, `setSort`
+Check that `client/src/store/filterStore.js` exists and verify:
+- Uses `create` (Zustand)
+- State contains: `activeMarque`, `activeEra`, `sort`
+- Contains setter methods: `setMarque`, `setEra`, `setSort`
 
 ### P3-3: TanStack Query Hooks
-检查 `client/src/hooks/useCars.js` 存在，验证：
-- 使用 `useQuery(['cars', filters], ...)`
-- `enabled` 或 `staleTime` 已配置
+Check that `client/src/hooks/useCars.js` exists and verify:
+- Uses `useQuery(['cars', filters], ...)`
+- `enabled` or `staleTime` is configured
 
-### P3-4: FilterBar 组件
-检查 `client/src/components/filter/FilterBar.jsx` 存在，验证：
-- 使用 `Chip` 组件渲染品牌和年代筛选
-- 连接了 Zustand `filterStore`
-- 显示动态 results count
+### P3-4: FilterBar Component
+Check that `client/src/components/filter/FilterBar.jsx` exists and verify:
+- Uses `Chip` component to render marque and era filters
+- Connected to Zustand `filterStore`
+- Displays a dynamic results count
 
 ### P3-5: TimelineSection & TimelineNode
-检查 `client/src/components/timeline/TimelineSection.jsx` 存在
-检查 `client/src/components/timeline/TimelineNode.jsx` 存在，验证：
-- `TimelineNode` 接受 `car`, `index`, `isSelected`, `onClick` props
-- 偶数 index 使用 `flex-row`，奇数使用 `flex-row-reverse`（交替布局）
-- 使用 `VignetteImage` 组件渲染图片
+Check that `client/src/components/timeline/TimelineSection.jsx` exists
+Check that `client/src/components/timeline/TimelineNode.jsx` exists and verify:
+- `TimelineNode` accepts `car`, `index`, `isSelected`, `onClick` props
+- Even index uses `flex-row`, odd index uses `flex-row-reverse` (alternating layout)
+- Uses `VignetteImage` component to render images
 
 ### P3-6: TechnicalSidebar
-检查 `client/src/components/sidebar/TechnicalSidebar.jsx` 存在，验证：
-- 接受 `slug` prop
-- 内部调用 `useCar(slug)`（按需加载，不在父组件预取）
-- 有 Tab 切换状态（Overview/Specifications/History/Media）
-- 使用 `GhostButton` 或 `PillButton` 渲染 "Request Provenance"
+Check that `client/src/components/sidebar/TechnicalSidebar.jsx` exists and verify:
+- Accepts a `slug` prop
+- Internally calls `useCar(slug)` (on-demand loading, not prefetched in parent)
+- Has Tab switching state (Overview/Specifications/History/Media)
+- Uses `GhostButton` or `PillButton` to render "Request Provenance"
 
-### P3-7: Home 页面完整实现
-读取 `client/src/pages/Home.jsx`，验证：
-- 不再是占位符（不含 "Coming soon" 或 "Phase 3" 文字）
-- 渲染了 HeroSection（或等效英雄区）
-- 渲染了 FilterBar
-- 渲染了 TimelineSection
-- 渲染了 TechnicalSidebar
-- 有 `selectedCarSlug` 状态，点击 TimelineNode 更新 Sidebar
+### P3-7: Home Page Full Implementation
+Read `client/src/pages/Home.jsx` and verify:
+- No longer a placeholder (does not contain "Coming soon" or "Phase 3" text)
+- Renders HeroSection (or equivalent hero area)
+- Renders FilterBar
+- Renders TimelineSection
+- Renders TechnicalSidebar
+- Has `selectedCarSlug` state that updates Sidebar on TimelineNode click
 
-### P3-8: CarDetail 页面
-读取 `client/src/pages/CarDetail.jsx`，验证：
-- 使用 `useParams()` 获取 slug
-- 调用 `useCar(slug)` 获取数据
-- 展示 specs 网格
-- 展示完整 provenance 文本
-- 有询盘表单（调用 `postInquiry`）
+### P3-8: CarDetail Page
+Read `client/src/pages/CarDetail.jsx` and verify:
+- Uses `useParams()` to get slug
+- Calls `useCar(slug)` to fetch data
+- Displays specs grid
+- Displays full provenance text
+- Has an inquiry form (calls `postInquiry`)
 
-### P3-9: Archive 页面
-读取 `client/src/pages/Archive.jsx`，验证：
-- 不再是占位符
-- 使用网格布局（非 timeline 布局）
-- 复用 FilterBar 进行筛选
+### P3-9: Archive Page
+Read `client/src/pages/Archive.jsx` and verify:
+- No longer a placeholder
+- Uses grid layout (not timeline layout)
+- Reuses FilterBar for filtering
 
-### P3-10: MarquePage 页面
-读取 `client/src/pages/MarquePage.jsx`，验证：
-- 使用 `useParams()` 获取 slug
-- 调用 `getMarques/:slug` 获取品牌+旗下车辆
-- 展示品牌 biography
+### P3-10: MarquePage
+Read `client/src/pages/MarquePage.jsx` and verify:
+- Uses `useParams()` to get slug
+- Calls `getMarques/:slug` to fetch marque + its cars
+- Displays marque biography
 
 ---
 
-## Phase 4 — 代码质量 & 版本控制
+## Phase 4 — Code Quality & Version Control
 
-> 生产部署、构建产物、Express 生产模式均不在检查范围内。
+> Production deployment, build artifacts, and Express production mode are out of scope.
 
-### P4-1: 环境变量安全性
-检查 `.env` 未被提交到 Git：
+### P4-1: Environment Variable Security
+Check that `.env` is not committed to Git:
 ```bash
 git ls-files .env
 ```
-验证：输出为空（.env 在 .gitignore 中）
+Verify: output is empty (.env is in .gitignore)
 
-检查 `.env.example` 已提交且包含所有必要键：
+Check that `.env.example` is committed and contains all required keys:
 `MONGO_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `PORT`, `NODE_ENV`
 
-### P4-2: 敏感信息未硬编码
-在以下目录中搜索硬编码凭据：
-- `server/` 和 `client/src/` 中不得出现真实的 `mongodb+srv://` 连接字符串（注释中的占位符除外）
-- 不得出现硬编码 JWT secret 字符串
-- `client/src/` 中不得出现 `localhost:5000`（API 调用必须通过 `/api` 相对路径）
+### P4-2: No Hardcoded Sensitive Information
+Search the following directories for hardcoded credentials:
+- `server/` and `client/src/` must not contain real `mongodb+srv://` connection strings (placeholder strings in comments are exempt)
+- Must not contain hardcoded JWT secret strings
+- `client/src/` must not contain `localhost:5000` (API calls must use the `/api` relative path)
 
-### P4-3: 依赖安全审计
-运行：
+### P4-3: Dependency Security Audit
+Run:
 ```bash
 npm audit --prefix client 2>&1
 npm audit --prefix server 2>&1
 ```
-验证：无 **critical** 或 **high** 漏洞（moderate 以下标记 ⚠️ WARN）
+Verify: no **critical** or **high** vulnerabilities (moderate and below marked ⚠️ WARN)
 
-### P4-4: Git 提交历史
-运行：
+### P4-4: Git Commit History
+Run:
 ```bash
 git log --oneline
 ```
-验证：有至少 1 条 commit，commit message 语义化（含 feat/fix/chore 等前缀）
+Verify: at least 1 commit exists, commit messages are semantic (include feat/fix/chore prefixes, etc.)
 
-### P4-5: GitHub 远程仓库
-运行：
+### P4-5: GitHub Remote Repository
+Run:
 ```bash
 git remote -v
 ```
-验证：有 `origin` 远程地址（github.com）
+Verify: has an `origin` remote address (github.com)
 
 ---
 
-## 测试报告格式
+## Test Report Format
 
-所有测试执行完毕后，输出：
+After all tests are executed, output:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ClassicRide — Full Project Test Report
-  运行时间：[当前日期时间]
-  服务状态：Backend [运行中/未运行] | Frontend [运行中/未运行]
+  Run time: [current datetime]
+  Service status: Backend [Running/Not running] | Frontend [Running/Not running]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-PHASE 1: Design System & React Scaffold  (15 项)
-  P1-1   Monorepo 根目录结构              ✅/❌
-  P1-2   客户端项目结构                   ✅/❌
-  ...（每项一行）
+PHASE 1: Design System & React Scaffold       (15 items)
+  P1-1   Monorepo root structure              ✅/❌
+  P1-2   Client project structure             ✅/❌
+  ...（one line per item）
 
-PHASE 2: Express API & MongoDB           (22 项)
-  P2-1   服务端文件结构                   ✅/❌
+PHASE 2: Express API & MongoDB               (22 items)
+  P2-1   Server file structure                ✅/❌
   ...
 
-PHASE 3: React 前端实现                 (10 项)
-  P3-1   服务层文件                       ✅/❌/⚠️
+PHASE 3: React Frontend Implementation       (10 items)
+  P3-1   Service layer file                   ✅/❌/⚠️
   ...
 
-PHASE 4: 代码质量 & 版本控制            (5 项)
-  P4-1   环境变量安全性                   ✅/❌/⚠️
+PHASE 4: Code Quality & Version Control      (5 items)
+  P4-1   Environment variable security        ✅/❌/⚠️
   ...
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  总计：52 项
-  ✅ 通过：XX    ❌ 失败：XX    ⚠️ 警告/待实现：XX
+  Total: 52 items
+  ✅ Pass: XX    ❌ Fail: XX    ⚠️ Warn/Pending: XX
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-【需修复问题】
-  ❌ Pxx  原因：...  修复建议：...
+[Issues to Fix]
+  ❌ Pxx  Reason: ...  Fix suggestion: ...
 
-【待验证项（服务未运行）】
-  ⚠️ P2-x  需启动 npm run dev 后验证
+[Items Pending Verification (services not running)]
+  ⚠️ P2-x  Requires `npm run dev` to be running before verification
 ```

@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom'
 import { VignetteImage } from '../ui/index.js'
 
 export default function TimelineNode({ car, index, isSelected, onClick }) {
+  // Alternating layout: even nodes put text on the left, odd nodes on the right.
+  // This creates the classic magazine timeline look specified in the design prototype.
   const isEven = index % 2 === 0
+  // Prefer the image explicitly flagged as primary; fall back to the first image.
   const primaryImage = car.images?.find((img) => img.primary) ?? car.images?.[0]
 
   return (

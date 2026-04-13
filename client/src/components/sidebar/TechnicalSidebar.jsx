@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCar } from '../../hooks/useCars.js'
 
+// Tab order mirrors the curator's narrative flow: high-level → technical → story → visuals.
 const TABS = ['Overview', 'Specifications', 'History', 'Media']
 
 export default function TechnicalSidebar({ slug }) {
@@ -11,6 +12,8 @@ export default function TechnicalSidebar({ slug }) {
 
   return (
     <aside className="w-[450px] bg-surface-container-lowest border-l border-outline-variant/10 flex-shrink-0">
+      {/* top-[140px] = header (80px) + FilterBar (~60px); must stay in sync with
+          the OFFSET constant used in Home.jsx's scroll-into-view calculation. */}
       <div className="sticky top-[140px] max-h-[calc(100vh-140px)] overflow-y-auto p-8 lg:p-12 space-y-10">
 
         {/* Header */}
@@ -42,6 +45,8 @@ export default function TechnicalSidebar({ slug }) {
         </nav>
 
         {/* Content */}
+        {/* mode="wait" ensures the exit animation completes before the next
+            content enters, preventing two panels from being visible at once. */}
         <AnimatePresence mode="wait">
           {!slug && (
             <motion.div
@@ -74,6 +79,9 @@ export default function TechnicalSidebar({ slug }) {
           )}
 
           {car && (
+            // key combines slug + tab so AnimatePresence treats both a car
+            // switch and a tab switch as a new element, triggering the
+            // exit/enter animation in both cases.
             <motion.div
               key={`${car.slug}-${activeTab}`}
               initial={{ opacity: 0, y: 8 }}
