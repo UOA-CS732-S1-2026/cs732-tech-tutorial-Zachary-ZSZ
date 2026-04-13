@@ -1,6 +1,8 @@
 # ClassicRide
 
-## The Cinematic Archive of Automotive Heritage
+English | [中文](README-Chinese.md)
+
+## Introduction
 
 ClassicRide is a full-stack MERN web application built as the companion demo codebase for the **University of Auckland CS732 (2026 S1) Tech Tutorial assignment**. The project demonstrates how two AI-powered development tools — **Google Stitch** (for UI design generation) and **Claude Code** (for AI-assisted full-stack development) — can be used together to drive the entire lifecycle of a modern web application, from visual design to production-ready code.
 
@@ -12,15 +14,21 @@ The application itself is a luxury automotive exhibition platform that presents 
 
 ## Table of Contents
 
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Environment Configuration](#environment-configuration)
-- [Seeding the Database](#seeding-the-database)
-- [Running the Project](#running-the-project)
-- [API Overview](#api-overview)
-- [Available Scripts](#available-scripts)
+- [ClassicRide](#classicride)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Tech Stack](#tech-stack)
+  - [Project Structure](#project-structure)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+    - [Step1: Dependencies Installation](#step1-dependencies-installation)
+    - [Step2: Environment Configuration](#step2-environment-configuration)
+    - [Step3(Optional): Seeding the Database](#step3optional-seeding-the-database)
+    - [Step4: Running the Project](#step4-running-the-project)
+  - [API Overview](#api-overview)
+  - [Available Scripts](#available-scripts)
+  - [Notes](#notes)
+  - [Additional Folders](#additional-folders)
 
 ---
 
@@ -38,7 +46,6 @@ The application itself is a luxury automotive exhibition platform that presents 
 | ODM            | Mongoose                                        |
 | Database       | MongoDB (Atlas)                                 |
 | Auth           | JWT + bcryptjs (curator admin only)             |
-| Image Uploads  | Multer + Cloudinary                             |
 
 ---
 
@@ -72,7 +79,7 @@ ClassicRide/
 └── README.md
 ```
 
-> **Note on Claude Code files:** The diagram above shows only the core application structure. The actual repository also contains Claude Code configuration files (`.claude/`) generated during AI-assisted development. These are intentionally kept in the repository so that viewers can follow along with the video presentation and see the exact development environment used. Refer to the video for a walkthrough of how these files were used.
+> **Note on Claude Code files:** The diagram above shows only the core application structure. The actual repository also contains Claude Code configuration files (`.claude/` & CLAUDE.md) generated during AI-assisted development. These are intentionally kept in the repository so that viewers can follow along with the video presentation and see the exact development environment used. Refer to the video for a walkthrough of how these files were used.
 
 ---
 
@@ -83,12 +90,14 @@ Ensure the following are installed before proceeding:
 - **Node.js** v18 or higher — [nodejs.org](https://nodejs.org)
 - **npm** v9 or higher (bundled with Node.js)
 - **MongoDB Atlas account** *(only needed if connecting to your own database)* — [mongodb.com/atlas](https://www.mongodb.com/atlas)
-- **Cloudinary account** *(free tier, required only for image uploads via admin panel)* — [cloudinary.com](https://cloudinary.com)
 
 ---
 
 ## Installation
 
+### Step1: Dependencies Installation
+
+Open your terminal in VCode or your preferred IDE, then fellow the steps and commands below:
 Clone the repository and install dependencies for all three workspaces (root, client, server):
 
 ```bash
@@ -107,37 +116,28 @@ npm install --prefix server
 
 ---
 
-## Environment Configuration
+### Step2: Environment Configuration
 
-Copy the example environment file and fill in your own values:
+Copy the example environment file:
 
 ```bash
+# Windows PowerShell/ macOS / Linux / Git Bash
 cp .env.example .env
+
+# Only if your terminal environment is Windows CMD, then use the command below:
+copy .env.example .env
 ```
 
-Open `.env` and configure each variable:
+Then open `.env` and replace only the `MONGO_URI` value — all other variables are pre-filled and ready to use:
 
 ```env
 # ── MongoDB ──────────────────────────────────────────────────────────────────
-# The MONGO_URI for this project is provided via the Canvas assignment submission.
-# Please refer to the Canvas assignment page to obtain the connection string,
-# or contact zacharyzhang2088@gmail.com if you have any questions.
+# Provided via the Canvas assignment page. Contact zacharyzhang2088@gmail.com if needed.
 MONGO_URI=<see Canvas assignment or contact zacharyzhang2088@gmail.com>
 
 # ── JSON Web Token ────────────────────────────────────────────────────────────
-# A long random string used to sign curator JWTs.
-# Generate one with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
-JWT_SECRET=your_64_char_random_secret_here
-
-# Token expiry duration (e.g. 7d, 24h)
+JWT_SECRET=76c90f6b6ea8cf04282fe7527c97d1124d6d90eb4a280312c5bd303458ce05bb80eec6fad51e592412de5eadb743950c6a9f96e2e851c7202600a906570beaef
 JWT_EXPIRES_IN=7d
-
-# ── Cloudinary (image uploads) ────────────────────────────────────────────────
-# Found in your Cloudinary dashboard under Settings → API Keys.
-# Only required if you use the admin panel to upload images.
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
 
 # ── Server ────────────────────────────────────────────────────────────────────
 PORT=5000
@@ -148,11 +148,11 @@ NODE_ENV=development
 
 ---
 
-## Seeding the Database
+### Step3(Optional): Seeding the Database
 
-> **If you are using the shared `MONGO_URI` provided via Canvas, the database is already fully seeded — you do not need to run this step.** Skip directly to [Running the Project](#running-the-project).
+> **<u>If you are using the shared `MONGO_URI` provided via Canvas, the database is already fully seeded — you do not need to run this step.</u>** Skip directly to step4 [Running the Project](#running-the-project).
 >
-> Only follow this section if you are connecting to your own fresh MongoDB instance.
+>**<u>！！！Only follow this section if you are connecting to your own MongoDB instance.！！！</u>**
 
 The project includes a seed script that populates the database with **9 marques** and **43 classic vehicles**, each with descriptions, technical specifications, provenance notes, and Wikimedia Commons images.
 
@@ -180,7 +180,7 @@ Seed complete!
 
 ---
 
-## Running the Project
+### Step4: Running the Project
 
 Start both the frontend (port 5173) and backend (port 5000) with a single command from the project root:
 
