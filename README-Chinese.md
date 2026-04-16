@@ -246,7 +246,6 @@ Vite 开发服务器会自动将所有 `/api` 请求代理到 `http://localhost:
 ## 注意事项
 
 - **未配置生产部署。** 本项目仅用于本地运行，不包含 CI/CD 流水线或托管配置。
-- **管理面板**入口为 `/admin/login`。首次使用需通过 `POST /api/auth/register`（携带有效 JWT）创建管理员账号。
 - 所有车辆图片均来自 **Wikimedia Commons**（公共领域或自由授权）。运行项目无需任何第三方图片 CDN 密钥。
 
 ---

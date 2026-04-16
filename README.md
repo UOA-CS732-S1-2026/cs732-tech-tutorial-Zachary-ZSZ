@@ -247,7 +247,6 @@ All commands are run from the **project root** unless noted.
 ## Notes
 
 - **No production deployment is configured.** The project is intended to run locally. There is no CI/CD pipeline or hosting setup.
-- **Admin panel** is accessible at `/admin/login`. Use `POST /api/auth/register` (with a valid JWT) to create the initial curator account.
 - All car images are sourced from **Wikimedia Commons** (public domain / freely licensed). No third-party image CDN keys are required to run the project.
 
 ---
