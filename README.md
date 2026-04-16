@@ -6,7 +6,7 @@ English | [中文](README-Chinese.md)
 
 ClassicRide is a full-stack MERN web application built as the companion demo codebase for the **University of Auckland CS732 (2026 S1) Tech Tutorial assignment**. The project demonstrates how two AI-powered development tools — **Google Stitch** (for UI design generation) and **Claude Code** (for AI-assisted full-stack development) — can be used together to drive the entire lifecycle of a modern web application, from visual design to production-ready code.
 
-The application itself is a luxury automotive exhibition platform that presents classic and iconic vehicles as a curated cinematic narrative. It features a full-screen timeline browsing experience, a dynamic technical sidebar, and a curator admin panel for managing the collection.
+The application itself is a luxury automotive exhibition platform that presents classic and iconic vehicles as a curated cinematic narrative. It features a full-screen timeline browsing experience, a dynamic technical sidebar, and a car archive page to demonstrate all the collection.
 
 > This repository is intended to be viewed alongside the accompanying video presentation. The video introduces the AI tooling workflow in detail; the codebase serves as the hands-on reference.
 
@@ -97,7 +97,7 @@ Ensure the following are installed before proceeding:
 
 ### Step1: Dependencies Installation
 
-Open your terminal in VCode or your preferred IDE, then fellow the steps and commands below:
+***Open your terminal in VCode or your preferred IDE***, then fellow the steps and commands below:
 Clone the repository and install dependencies for all three workspaces (root, client, server):
 
 ```bash
@@ -118,13 +118,13 @@ npm install --prefix server
 
 ### Step2: Environment Configuration
 
-Copy the example environment file:
+***<u>In the root folder terminal</u>***. Copy the example environment file:
 
 ```bash
 # Windows PowerShell/ macOS / Linux / Git Bash
 cp .env.example .env
 
-# Only if your terminal environment is Windows CMD, then use the command below:
+# Notice: !!!Only if your terminal environment is Windows CMD!!!, then use the command below:
 copy .env.example .env
 ```
 
@@ -182,7 +182,7 @@ Seed complete!
 
 ### Step4: Running the Project
 
-Start both the frontend (port 5173) and backend (port 5000) with a single command from the project root:
+Start both the frontend (port 5173) and backend (port 5000) with a single command from the ***<u>project root</u>***:
 
 ```bash
 npm run dev
